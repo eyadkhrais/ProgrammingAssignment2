@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## This function takes a matrix as an argument and then finds the inverse and puts it in a list.
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -17,17 +16,17 @@ makeCacheMatrix <- function(x = matrix()) {
 ## this function takes the list and caches it and then sets the cache in a list.
 
 cacheSolve <- function(x, ...) {
-  inv <- NULL
-  set <- function(y) {
-    x <<- y
-    inv <<- NULL
+  inv <- x$getInverse()
+  if (!is.null(inv)) {
+    message("getting cached data")
+    return(inv)
   }
-  get <- function() x
-  setinverse <- function(inverse) inv <<- inverse
-  getinverse <- function() inv
-  list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
+  mat <- x$get()
+  inv <- solve(mat, ...)
+  x$setInverse(inv)
+  inv
   }
-=======
+
 ## Put comments here that give an overall description of what your
 ## functions do
 
